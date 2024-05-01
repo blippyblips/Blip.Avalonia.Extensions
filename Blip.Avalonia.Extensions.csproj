@@ -4,6 +4,7 @@
     <Nullable>enable</Nullable>
     <LangVersion>latest</LangVersion>
     <AvaloniaUseCompiledBindingsByDefault>true</AvaloniaUseCompiledBindingsByDefault>
+    <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
   </PropertyGroup>
 
   <ItemGroup>
@@ -16,10 +17,10 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Compile Update="ExCaptionButtons.axaml.cs">
+    <Compile Update="Blip\Avalonia\Extensions\ExCaptionButtons.axaml.cs">
       <DependentUpon>%(Filename)</DependentUpon>
     </Compile>
-    <Compile Update="ExTitleBar.axaml.cs">
+    <Compile Update="Blip\Avalonia\Extensions\ExTitleBar.axaml.cs">
       <DependentUpon>%(Filename)</DependentUpon>
     </Compile>
   </ItemGroup>

@@ -1,16 +1,19 @@
-﻿using AutoEditor.Interfaces;
-using Avalonia.Controls;
+﻿using Avalonia.Controls;
 using Avalonia.Data;
 using Avalonia.Layout;
+using Blip.Avalonia.Extensions.AutoEditor;
+using Blip.Avalonia.Extensions.AutoEditor.Interfaces;
 using System.Reflection;
 
-namespace AutoEditor.Drawers;
+namespace Blip.Avalonia.Extensions.AutoEditor.DefaultDrawers;
 
 [TypeDrawer(typeof(double))]
 public class DoubleDrawer : IPropertyControl
 {
-  public Control CreateController (PropertyInfo prop, object obj) {
-    var controller = new NumericUpDown {
+  public Control CreateController(PropertyInfo prop, object obj)
+  {
+    var controller = new NumericUpDown
+    {
       [!NumericUpDown.ValueProperty] = new Binding(prop.Name) { Source = obj, Mode = BindingMode.TwoWay },
       VerticalAlignment = VerticalAlignment.Stretch,
       HorizontalAlignment = HorizontalAlignment.Stretch,

@@ -5,7 +5,7 @@ using Avalonia.Controls.Metadata;
 using Avalonia.Styling;
 using Avalonia.Controls.Chrome;
 
-namespace Ex;
+namespace Blip.Avalonia.Extensions;
 
 /// <summary>
 /// Draws window minimize / maximize / close buttons in a <see cref="TitleBar"/> when managed client decorations are enabled.
@@ -26,23 +26,28 @@ public class ExCaptionButtons : CaptionButtons
   private const string PART_FullScreenButton = "PART_FullScreenButton";
   private const string PART_ThemeButton = "PART_ThemeButton";
 
-  public bool IsCancel {
+  public bool IsCancel
+  {
     get => GetValue(IsCancelProperty);
     set => SetValue(IsCancelProperty, value);
   }
   public static readonly StyledProperty<bool> IsCancelProperty =
            AvaloniaProperty.Register<ExTitleBar, bool>(nameof(IsCancel));
 
-  public void OnTheme () {
-    if (Application.Current != null) {
+  public void OnTheme()
+  {
+    if (Application.Current != null)
+    {
       Application.Current.RequestedThemeVariant = Application.Current.RequestedThemeVariant == ThemeVariant.Dark ? ThemeVariant.Light : ThemeVariant.Dark;
     }
   }
 
-  protected override void OnApplyTemplate (TemplateAppliedEventArgs e) {
+  protected override void OnApplyTemplate(TemplateAppliedEventArgs e)
+  {
     base.OnApplyTemplate(e);
 
-    if (e.NameScope.Find<Button>(PART_ThemeButton) is { } themeButton) {
+    if (e.NameScope.Find<Button>(PART_ThemeButton) is { } themeButton)
+    {
       themeButton.Click += (sender, e) => OnTheme();
     }
   }

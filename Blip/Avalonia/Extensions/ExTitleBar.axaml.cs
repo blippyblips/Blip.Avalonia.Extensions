@@ -8,7 +8,7 @@ using Avalonia.Input;
 using Avalonia.Interactivity;
 using System.Reactive.Disposables;
 
-namespace Ex;
+namespace Blip.Avalonia.Extensions;
 
 [TemplatePart("PART_ExCaptionButtons", typeof(ExCaptionButtons), IsRequired = true)]
 [PseudoClasses(":minimized", ":normal", ":maximized", ":fullscreen")]
@@ -17,38 +17,45 @@ public class ExTitleBar : TemplatedControl
   private CompositeDisposable? _disposables;
   private ExCaptionButtons? _captionButtons;
 
-  public object? InnerLeftContent {
+  public object? InnerLeftContent
+  {
     get { return GetValue(InnerLeftContentProperty); }
     set { SetValue(InnerLeftContentProperty, value); }
   }
   public static readonly StyledProperty<object?> InnerLeftContentProperty = AvaloniaProperty.Register<ExTitleBar, object?>("InnerLeftContent");
 
-  public object? InnerRightContent {
+  public object? InnerRightContent
+  {
     get { return GetValue(InnerRightContentProperty); }
     set { SetValue(InnerRightContentProperty, value); }
   }
   public static readonly StyledProperty<object?> InnerRightContentProperty = AvaloniaProperty.Register<ExTitleBar, object?>("InnerRightContent");
 
-  public bool IsDialog {
+  public bool IsDialog
+  {
     get => GetValue(IsDialogProperty);
     set => SetValue(IsDialogProperty, value);
   }
   public static readonly StyledProperty<bool> IsDialogProperty = AvaloniaProperty.Register<ExTitleBar, bool>(nameof(IsDialog));
 
-  public ExTitleBar () {
+  public ExTitleBar()
+  {
   }
 
-  private void UpdateSize (Window window) {
+  private void UpdateSize(Window window)
+  {
     Margin = new Thickness(
         window.OffScreenMargin.Left,
         window.OffScreenMargin.Top,
         window.OffScreenMargin.Right,
         window.OffScreenMargin.Bottom);
 
-    if (window.WindowState != WindowState.FullScreen) {
+    if (window.WindowState != WindowState.FullScreen)
+    {
       Height = window.WindowDecorationMargin.Top;
 
-      if (_captionButtons != null) {
+      if (_captionButtons != null)
+      {
         _captionButtons.Height = Height;
       }
     }
@@ -56,14 +63,16 @@ public class ExTitleBar : TemplatedControl
     IsVisible = true;
   }
 
-  protected override void OnApplyTemplate (TemplateAppliedEventArgs e) {
+  protected override void OnApplyTemplate(TemplateAppliedEventArgs e)
+  {
     base.OnApplyTemplate(e);
 
     _captionButtons?.Detach();
 
     _captionButtons = e.NameScope.Get<ExCaptionButtons>("PART_ExCaptionButtons");
 
-    if (VisualRoot is Window window) {
+    if (VisualRoot is Window window)
+    {
       _captionButtons?.Attach(window);
       UpdateSize(window);
     }
@@ -72,10 +81,12 @@ public class ExTitleBar : TemplatedControl
 
 
   /// <inheritdoc />
-  protected override void OnAttachedToVisualTree (VisualTreeAttachmentEventArgs e) {
+  protected override void OnAttachedToVisualTree(VisualTreeAttachmentEventArgs e)
+  {
     base.OnAttachedToVisualTree(e);
 
-    if (VisualRoot is Window window) {
+    if (VisualRoot is Window window)
+    {
       _disposables = new CompositeDisposable(6)
       {
                     window.GetObservable(Window.WindowDecorationMarginProperty).Subscribe(_ => UpdateSize(window)),
@@ -94,7 +105,8 @@ public class ExTitleBar : TemplatedControl
   }
 
   /// <inheritdoc />
-  protected override void OnDetachedFromVisualTree (VisualTreeAttachmentEventArgs e) {
+  protected override void OnDetachedFromVisualTree(VisualTreeAttachmentEventArgs e)
+  {
     base.OnDetachedFromVisualTree(e);
 
     _disposables?.Dispose();

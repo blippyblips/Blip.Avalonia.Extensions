@@ -1,14 +1,11 @@
-<Styles xmlns="https://github.com/avaloniaui"
-        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:controls="clr-namespace:Ex">
+<Styles xmlns="https://github.com/avaloniaui" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:ex="https://github.com/blippyblips/ex">
   <Design.PreviewWith>
     <Border Width="300" Height="30">
-      <controls:ExTitleBar Background="SkyBlue"
-                           Foreground="Black" />
+      <ex:ExTitleBar Background="SkyBlue" Foreground="Black" />
     </Border>
   </Design.PreviewWith>
 
-  <Style Selector="controls|ExTitleBar">
+  <Style Selector="ex|ExTitleBar">
     <Setter Property="Foreground" Value="{DynamicResource SystemControlForegroundBaseHighBrush}" />
     <Setter Property="VerticalAlignment" Value="Top" />
     <Setter Property="HorizontalAlignment" Value="Stretch" />
@@ -16,21 +13,14 @@
     <Setter Property="Template">
       <ControlTemplate>
         <Panel HorizontalAlignment="{TemplateBinding HorizontalAlignment}" VerticalAlignment="Stretch">
-          <Panel x:Name="PART_MouseTracker" VerticalAlignment="Top" Height="1" />
+          <Panel x:Name="PART_MouseTracker" Height="1" VerticalAlignment="Top" />
           <Panel x:Name="PART_Container">
             <Border x:Name="PART_Background" Background="{TemplateBinding Background}" IsHitTestVisible="False" />
             <Grid ColumnDefinitions="Auto,*,Auto">
-              <ContentPresenter Grid.Column="0" Grid.ColumnSpan="1"
-                                Content="{TemplateBinding InnerLeftContent}" />
+              <ContentPresenter Grid.Column="0" Grid.ColumnSpan="1" Content="{TemplateBinding InnerLeftContent}" />
 
-              <controls:ExCaptionButtons Grid.Column="1"
-                                         x:Name="PART_ExCaptionButtons"
-                                         HorizontalAlignment="Right"
-                                         VerticalAlignment="Top"
-                                         Foreground="{TemplateBinding Foreground}"
-                                         IsCancel="{TemplateBinding IsDialog}" />
-              <ContentPresenter Grid.Column="2" Grid.ColumnSpan="1"
-                                Content="{TemplateBinding InnerRightContent}" />
+              <ex:ExCaptionButtons x:Name="PART_ExCaptionButtons" Grid.Column="1" HorizontalAlignment="Right" VerticalAlignment="Top" Foreground="{TemplateBinding Foreground}" IsCancel="{TemplateBinding IsDialog}" />
+              <ContentPresenter Grid.Column="2" Grid.ColumnSpan="1" Content="{TemplateBinding InnerRightContent}" />
             </Grid>
           </Panel>
         </Panel>
@@ -53,8 +43,7 @@
       <Setter Property="RenderTransform" Value="translateY(-30px)" />
       <Setter Property="Transitions">
         <Transitions>
-          <TransformOperationsTransition Property="RenderTransform"
-                                         Duration="0:0:.25" />
+          <TransformOperationsTransition Property="RenderTransform" Duration="0:0:.25" />
         </Transitions>
       </Setter>
     </Style>

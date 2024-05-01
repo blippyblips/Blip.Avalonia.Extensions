@@ -1,24 +1,24 @@
 <Styles xmlns="https://github.com/avaloniaui"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:controls="clr-namespace:Ex">
+        xmlns:ex="https://github.com/blippyblips/ex">
 
   <Design.PreviewWith>
     <Border Padding="20">
       <StackPanel Spacing="20">
         <ThemeVariantScope RequestedThemeVariant="Dark">
           <Border Background="Black">
-            <controls:ExCaptionButtons Height="30" />
+            <ex:ExCaptionButtons Height="30" />
           </Border>
         </ThemeVariantScope>
         <ThemeVariantScope RequestedThemeVariant="Light">
-          <controls:ExCaptionButtons Height="30" />
+          <ex:ExCaptionButtons Height="30" />
         </ThemeVariantScope>
       </StackPanel>
     </Border>
   </Design.PreviewWith>
 
 
-  <Style Selector="controls|ExCaptionButtons">
+  <Style Selector="ex|ExCaptionButtons">
     <Setter Property="MaxHeight" Value="30" />
     <Setter Property="Template">
       <ControlTemplate>

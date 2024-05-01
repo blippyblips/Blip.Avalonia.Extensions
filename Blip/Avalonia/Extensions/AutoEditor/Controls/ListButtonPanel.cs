@@ -5,7 +5,7 @@ using Avalonia.Media;
 using System.Collections;
 using System;
 
-namespace AutoEditor.Controls;
+namespace Blip.Avalonia.Extensions.AutoEditor.Controls;
 
 public class ListButtonPanel : StackPanel
 {
@@ -15,19 +15,21 @@ public class ListButtonPanel : StackPanel
 
   protected override Type StyleKeyOverride => typeof(StackPanel);
 
-  static ListButtonPanel () {
+  static ListButtonPanel()
+  {
     OrientationProperty.OverrideDefaultValue<ListButtonPanel>(Orientation.Horizontal);
     HorizontalAlignmentProperty.OverrideDefaultValue<ListButtonPanel>(HorizontalAlignment.Right);
     SpacingProperty.OverrideDefaultValue<ListButtonPanel>(2);
   }
 
-  public ListButtonPanel (IList target) {
+  public ListButtonPanel(IList target)
+  {
     var newButton = new Button { Content = new PathIcon() { Data = PathGeometry.Parse(AddIconPath) }, Margin = new Thickness(1, 0, 1, 0) };
     var editButton = new Button { Content = new PathIcon() { Data = PathGeometry.Parse(EditIconPath) }, Margin = new Thickness(1, 0, 1, 0) };
     var deleteButton = new Button { Content = new PathIcon() { Data = PathGeometry.Parse(DeleteIconPath) }, Margin = new Thickness(1, 0, 1, 0) };
     newButton.Click += (sender, e) => { target.Add(Activator.CreateInstance(target.GetType().GetGenericArguments()[0])); };
-    this.Children.Add(newButton);
-    this.Children.Add(editButton);
-    this.Children.Add(deleteButton);
+    Children.Add(newButton);
+    Children.Add(editButton);
+    Children.Add(deleteButton);
   }
 }

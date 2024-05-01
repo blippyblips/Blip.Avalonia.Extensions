@@ -1,4 +1,4 @@
 ﻿using Avalonia.Metadata;
 
-[assembly: XmlnsDefinition("https://github.com/blippyblips/ex", "Ex")]
-[assembly: XmlnsDefinition("https://github.com/blippyblips/ex", "AutoEditor")]
+[assembly: XmlnsDefinition("https://github.com/blippyblips/ex", "Blip.Avalonia.Extensions")]
+[assembly: XmlnsDefinition("https://github.com/blippyblips/ex", "Blip.Avalonia.Extensions.AutoEditor")]

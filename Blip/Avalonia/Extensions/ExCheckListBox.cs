@@ -10,7 +10,7 @@ using System;
 using System.Collections;
 using System.Reactive.Linq;
 
-namespace Ex;
+namespace Blip.Avalonia.Extensions;
 
 public class ExCheckListBox : ListBox
 {
@@ -19,7 +19,8 @@ public class ExCheckListBox : ListBox
   public new static readonly DirectProperty<SelectingItemsControl, IList?> SelectedItemsProperty;
 
   [InheritDataTypeFromItems("ItemsSource")]
-  private static FuncDataTemplate<object?> DefaultPanel => new((data, s) => {
+  private static FuncDataTemplate<object?> DefaultPanel => new((data, s) =>
+  {
     if (data == null) { return null; }
     var result = new StackPanel() { Orientation = Orientation.Horizontal, Margin = new Thickness(0.0), HorizontalAlignment = HorizontalAlignment.Stretch, VerticalAlignment = VerticalAlignment.Center };
     var text = new TextBlock { Text = data.ToString(), HorizontalAlignment = HorizontalAlignment.Center };
@@ -28,7 +29,8 @@ public class ExCheckListBox : ListBox
     return result;
   }, true);
 
-  static ExCheckListBox () {
+  static ExCheckListBox()
+  {
     SelectedItemsProperty = SelectingItemsControl.SelectedItemsProperty;
     SelectionModeProperty.OverrideDefaultValue<ExCheckListBox>(SelectionMode.Multiple | SelectionMode.Toggle);
     VerticalAlignmentProperty.OverrideDefaultValue<ExCheckListBox>(VerticalAlignment.Center);
